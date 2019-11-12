@@ -32,7 +32,7 @@ async function run() {
     name: releaseName,
     draft,
     prerelease
-  });    ,
+  });    
 
     // Get the ID, html_url, and upload URL for the created Release from the response
   const {
