@@ -2,10 +2,18 @@ on:
   # event to trigger action, e.g.
   push:
     # Sequence of patterns matched against refs/tags
-    # tags:
+    tags:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
-             # You can create a filter on branches.. or major releases *00*
-
+             # You can create a filter on branches..
+             #  or major releases *00*
+             # - 
+              
+    branches: 
+      - 'master'
+      # - 'develop'
+      # - 'publish'
+      
+      
 name: Create Release
 
 jobs:
