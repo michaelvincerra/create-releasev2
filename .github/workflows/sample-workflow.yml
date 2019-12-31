@@ -2,9 +2,18 @@ on:
   # event to trigger action, e.g.
   push:
     # Sequence of patterns matched against refs/tags
-    # tags:
-      # - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
-
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+             # You can create a filter on branches..
+             #  or major releases *00*
+             # - 
+              
+    branches: 
+      - 'master'
+      # - 'develop'
+      # - 'publish'
+      
+      
 name: Create Release
 
 jobs:
@@ -13,14 +22,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-      #  uses: actions/checkout@master
-      # - name: Create Release
-        # id: create_release
-        # uses: ./
-        # env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # with:
-          # tag_name: ${{ github.ref }}
-          # release_name: Release ${{ github.ref }}
-          # draft: false
-          # prerelease: false
+        uses: actions/checkout@master
+      - name: Create Release
+        id: create_release
+        uses: ./
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # This token you receive for free
+        with:
+          tag_name: ${{ github.ref }} #whatever you define in the actions.yml
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
